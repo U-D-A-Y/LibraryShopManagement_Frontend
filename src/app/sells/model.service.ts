@@ -10,9 +10,18 @@ export class Model{
     selectedAddItem=new Book();
     bookQueueList:Array<Book>
     bookList=Array<Book>();
+  
+    commission
+    totalWithoutCommission
+    totalCommission
+    totalWithCommission
+    cash
+    returnTk
     
     constructor(private http:Http){
         this.bookQueueList=[]
+        this.commission=20
+        this.cash=0
     }
 
   

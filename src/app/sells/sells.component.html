@@ -41,24 +41,6 @@
                             <td><input class="form-control" type="text" name="selectedAddItem.QUANTITY" [(ngModel)]="model.selectedAddItem.QUANTITY"></td>
                         </tr>
                         <tr class="">
-                            <th scope="col">type</th>
-                            <td scope="col text-center">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="radio" name="exampleRadios"
-                                        id="exampleRadios1" value="option1" checked>
-                                    <label class="form-check-label" for="exampleRadios1">
-                                        Buy
-                                    </label>
-                                </div>
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="radio" name="exampleRadios"
-                                        id="exampleRadios1" value="option1" checked>
-                                    <label class="form-check-label" for="exampleRadios1">
-                                        Rent
-                                    </label>
-                                </div>
-                            
-                            </td>
                             <th scope="col text-right" colspan="2">
                                <button type="button" class="btn btn-success btn-sm" (click)="onClickSelectedAddBtn()"><i class="fa fa-plus"></i>Add</button>
                            </th>
@@ -104,7 +86,7 @@
                             <th scope="col">Book Name</th>
                             <th scope="col">Price</th>
                             <th scope="col">Quantity</th>
-                            <th scope="col">Tota Price</th>
+                            <th scope="col">Total Price</th>
                             <th scope="col">Actions</th>
                         </tr>
                     </thead>
@@ -113,7 +95,7 @@
                             <th scope="row">{{i+1}}</th>
                             <td>{{book.BOOK_NAME}}</td>
                             <td [style.width]="'100px'">{{book.PRICE}}</td>
-                            <td [style.width]="'100px'"><input class="form-control" type="text" name="ql.QUANTITY" [(ngModel)]="book.QUANTITY"></td>
+                            <td [style.width]="'100px'"><input class="form-control" type="text" name="ql.QUANTITY" [(ngModel)]="book.QUANTITY" (change)="queueBookQuantity()"></td>
                             <td>{{book.PRICE*book.QUANTITY}}</td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-dark btn-sm m-1"><i class="fa fa-eye"></i></button>
@@ -125,7 +107,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-3">
         <div class="card">
             <div class="card-header">Transaction</div>
             <div class="card-body">
@@ -135,69 +117,32 @@
                             <table class="table table-bordered mb-0">
                                 <tr class="text-left">
                                     <th scope="col">Commission</th>
-                                    <td><input class="form-control" type="text" placeholder="Default input"></td>
-                                    <th scope="col">type</th>
-                                    <td scope="col text-center">
-                                        <div class="form-check-inline">
-                                            <input class="form-check-input" type="radio" name="exampleRadios"
-                                                id="exampleRadios1" value="option1" checked>
-                                            <label class="form-check-label" for="exampleRadios1">
-                                                Regular
-                                            </label>
-                                        </div>
-                                        <div class="form-check-inline">
-                                            <input class="form-check-input" type="radio" name="exampleRadios"
-                                                id="exampleRadios1" value="option1" checked>
-                                            <label class="form-check-label" for="exampleRadios1">
-                                                Member
-                                            </label>
-                                        </div>
-                                    
-                                    </td>
-                                </tr>
-                            </table>
-                        </form>
-                    </div>
-                    <div class="col-md-6">
-                        <form>
-                            <table class="table table-bordered mb-0">
-                                <tr class="text-left">
-                                    <th scope="col" colspan="1">Total</th>
-                                    <td colspan="3"><input class="form-control" type="text" placeholder="Default input"></td>
+                                    <td><input class="form-control" type="text" name="model.commission" [(ngModel)]="model.commission"></td>
                                 </tr>
                                 <tr class="text-left">
-                                    <th scope="col" colspan="1">Total Commission</th>
-                                    <td colspan="3"><input class="form-control" type="text" placeholder="Default input"></td>
+                                    <th scope="col" >Total</th>
+                                    <td >{{model.totalWithoutCommission}}</td>
                                 </tr>
                                 <tr class="text-left">
-                                    <th scope="col" colspan="1">Total member commission</th>
-                                    <td colspan="3"><input class="form-control" type="text" placeholder="Default input"></td>
+                                    <th scope="col" >Total Commission</th>
+                                    <td >{{model.totalCommission}}</td>
                                 </tr>
-                            </table>
-                        </form>
-                    </div>
-                    <div class="col-md-6">
-                        <form>
-                            <table class="table table-bordered mb-0">
                                 <tr class="text-left">
                                     <th scope="col">Total</th>
-                                    <td><input class="form-control" type="text" placeholder="Default input"></td>
+                                    <td>{{this.model.totalWithCommission}}</td>
                                 </tr>
                                 <tr class="text-left">
-                                    <th scope="col" colspan="1">Cash</th>
-                                    <td><input class="form-control" type="text" placeholder="Default input"></td>
-                                  
+                                    <th scope="col">Cash</th>
+                                    <td><input class="form-control" type="text" name="model.cash" [(ngModel)]="model.cash"></td>
                                 </tr>
                                 <tr class="text-left">
-                                    <th scope="col" colspan="1">Return</th>
-                                    <td colspan><input class="form-control" type="text" placeholder="Default input"></td>
+                                    <th scope="col">Return</th>
+                                    <td>{{model.returnTk}}</td>
                                 </tr>
                                 <tr class="text-right">
                                     <th scope="col" colspan="2">
                                         <button type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-vcard"></i>Transaction</button>
                                     </th>
-                                   
-                                  
                                 </tr>
                             </table>
                         </form>
