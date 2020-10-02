@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+.top-bar{
+    display: flex;
+    height: 50px; 
+    background-color: #343A40;
+}
+
+.left-bar{
+    background-color: #343A40;
+    height:calc(100vh - 50px);
+    min-width: 250px;
+   
+}
+
+.content{
+    flex-grow: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    height:calc(100vh - 50px);
+}
+
+.table th{
+    font-weight: 500 !important;
+    vertical-align: middle !important
+}
+
+.auto-complete{
+    position: relative;
+}
+
+.auto-complete-ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background: grey;
+    position: absolute;
+    top: 45px;
+    width: 100%;
+}
+.auto-complete-ul li{
+    padding: .5rem;
+}

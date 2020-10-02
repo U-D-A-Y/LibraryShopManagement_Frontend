@@ -1,0 +1,16 @@
+  <div class="top-bar">
+    <div class="col-md-6 text-left text h4 text-white mt-2">Library Management</div>
+    <div class="col-md-6 text-right h6 text-white mt-3">Signout</div>
+  </div>
+  <div class="d-flex" >
+    <div class="left-bar">
+      <app-nav-bar></app-nav-bar>
+    </div>
+    <div class="content">
+      <div class="alert alert-secondary text-primary font-weight-bold" >
+        {{routerUrl}}
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+   
+  </div>

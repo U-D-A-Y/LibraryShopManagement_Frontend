@@ -1,0 +1,160 @@
+<div class="card">
+    <div class="card-header d-flex justify-content-between ">
+        <p class="mb-0">{{'books List'|titlecase}}</p>
+        <button type="button" class="btn btn-primary btn-sm" (click)="addModal(lgModal)"><i class="fa fa-plus"></i>
+            Add</button>
+    </div>
+    <div class="card-body">
+        <div class="border d-flex justify-content-end">
+            <div class="input-group my-3 w-25 mr-3">
+                <input type="text" class="form-control" placeholder="" [(ngModel)]="searchText">
+                <div class="input-group-append">
+                    <span class="input-group-text"> <i class="fa fa-search"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered ">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Book Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Author Name</th>
+                    <th scope="col">Publication By</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of model.booksList |filter:[searchText];index as i">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{book.BOOK_NAME}}</td>
+                    <td>{{book.CATEGORY_NAME}}</td>
+                    <td>{{book.AUTHOR_NAME}}</td>
+                    <td>{{book.PUBLICATION_NAME}}</td>
+                    <td>{{book.PRICE}}</td>
+                    <td>{{book.QUANTITY}}</td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-dark btn-sm m-1" (click)="viewBookDetails(lgModal,book)"><i
+                                class="fa fa-eye"></i></button>
+                        <button type="button" class="btn btn-warning btn-sm m-1"
+                            (click)="updateBookDetails(lgModal,book)"><i class="fa fa-edit"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm m-1" (click)="onClickDeleteModal(deleteModal,book)"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left">{{title|titlecase}}</h4>
+                <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form   #bookForm="ngForm">
+                    <table class="table table-bordered">
+                        <tr class="text-left">
+                            <th scope="col">Category</th>
+                            <td><select class="form-control" name="CATEGORY_FK"
+                                    [(ngModel)]="model.selectedBook.CATEGORY_FK" [disabled]="btnShowCon==1">
+                                    <option *ngFor="let category of model.categoriesList"
+                                        [value]="category.CATEGORY_PK">{{category.NAME}}</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Book Name</th>
+                            <td><input class="form-control" type="text" name="BOOK_NAME"
+                                    [(ngModel)]="model.selectedBook.BOOK_NAME" [disabled]="btnShowCon==1" required></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">ISBN number</th>
+                            <td><input class="form-control" type="text" name="ISBN"
+                                    [(ngModel)]="model.selectedBook.ISBN" [disabled]="btnShowCon==1"></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Descriptions</th>
+                            <td><textarea class="form-control" type="text" name="DESCRIPTION"
+                                    [(ngModel)]="model.selectedBook.DESCRIPTION" [disabled]="btnShowCon==1"></textarea>
+                            </td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Author name</th>
+                            <td><input class="form-control" type="text" name="AUTHOR_NAME"
+                                    [(ngModel)]="model.selectedBook.AUTHOR_NAME" [disabled]="btnShowCon==1"></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Publication By</th>
+                            <td><select class="form-control" name="PUBLICATION_BY_FK"
+                                    [(ngModel)]="model.selectedBook.PUBLICATION_BY_FK" [disabled]="btnShowCon==1">
+                                    <option *ngFor="let publisher of model.publishersList"
+                                        [value]="publisher.PUBLISHER_PK">{{publisher.NAME}}</option>
+                                </select></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Publication Year</th>
+                            <td><input class="form-control" type="text" name="PUBLICATION_YEAR"
+                                    [(ngModel)]="model.selectedBook.PUBLICATION_YEAR" [disabled]="btnShowCon==1"></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Number Of Page</th>
+                            <td><input class="form-control" type="text" name="NUMBER_OF_PAGE" [disabled]="btnShowCon==1"
+                                    [(ngModel)]="model.selectedBook.NUMBER_OF_PAGE"></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Price</th>
+                            <td><input class="form-control" type="text" name="PRICE"
+                                    [(ngModel)]="model.selectedBook.PRICE" [disabled]="btnShowCon==1"></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Stock</th>
+                            <td><input class="form-control" type="text" name="QUANTITY"
+                                    [(ngModel)]="model.selectedBook.QUANTITY" [disabled]="btnShowCon==1"></td>
+                        </tr>
+                        <tr class="text-right">
+                            <th scope="col " colspan="2">
+                                <button *ngIf="btnShowCon==2" type="button" class="btn btn-success btn-sm" (click)="onClickAddBookBtn(lgModal)" [disabled]="!bookForm.valid">Add</button>
+                                <button *ngIf="btnShowCon==3" type="button"
+                                    class="btn btn-warning btn-sm">Update</button>
+                            </th>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left">{{title|titlecase}}</h4>
+                <button type="button" class="close pull-right" (click)="deleteModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Do want to delete it</p>
+            </div>
+            <div class="modal-footer">
+                <div>
+                    <button type="button" class="btn btn-danger mr-1" (click)="onClickDeleteBookBtn(deleteModal)">Yes</button>
+                    <button type="button" class="btn btn-primary" (click)="deleteModal.hide()">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+<div class="card">
+    <div class="card-header d-flex justify-content-between ">
+        <p class="mb-0">books List</p>
+        <button type="button" class="btn btn-primary mb-0" (click)="lgModal.show()"><i class="fa fa-plus"></i>
+            Add</button>
+    </div>
+    <div class="card-body">
+        <div class="border d-flex justify-content-end">
+            <div class="input-group my-3 w-25 mr-3">
+                <input type="text" class="form-control" placeholder="Recipient's username">
+                <div class="input-group-append">
+                    <span class="input-group-text"> <i class="fa fa-search"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Book Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Author Name</th>
+                    <th scope="col">Publication By</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-dark btn-sm m-1"><i class="fa fa-eye"></i></button>
+                        <button type="button" class="btn btn-warning btn-sm m-1"><i class="fa fa-edit"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-dark btn-sm m-1"><i class="fa fa-eye"></i></button>
+                        <button type="button" class="btn btn-warning btn-sm m-1"><i class="fa fa-edit"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td colspan="2">Larry the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left">Add Book</h4>
+                <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <table class="table table-bordered">
+                        <tr class="text-left">
+                            <th scope="col">Category</th>
+                            <td><select class="form-control">
+                                <option>Default select</option>
+                              </select></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Book Name</th>
+                            <td><input class="form-control" type="text" placeholder="Default input"></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">ISBN number</th>
+                            <td><input class="form-control" type="text" placeholder="Default input"></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Descriptions</th>
+                            <td><textarea class="form-control" type="text" placeholder="Default input"></textarea></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Author name</th>
+                            <td><input class="form-control" type="text" placeholder="Default input"></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Publication By</th>
+                            <td><select class="form-control">
+                                <option>Default select</option>
+                              </select></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Publication Year</th>
+                            <td><input class="form-control" type="text" placeholder="Default input"></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Number Of Page</th>
+                            <td><input class="form-control" type="text" placeholder="Default input"></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Price</th>
+                            <td><input class="form-control" type="text" placeholder="Default input"></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Stock</th>
+                            <td><input class="form-control" type="text" placeholder="Default input"></td>
+                        </tr>
+                        <tr class="text-right">
+                            <th scope="col " colspan="2">
+                                <button type="button" class="btn btn-success"><i class="fa fa-plus"></i>Add</button>
+                            </th>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

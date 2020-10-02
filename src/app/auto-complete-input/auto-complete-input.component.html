@@ -1,0 +1,8 @@
+<div class="auto-complete">
+    <input  class="form-control" type="text" placeholder="Default input" (focus)="onFocus()" name="intput" [(ngModel)]="inputField" autocomplete="off">
+    <ul class="auto-complete-ul" *ngIf="show">
+        <li *ngFor="let book of booklist |filter:[inputField];index as i" (click)="onClickList(book)">{{book.BOOK_NAME}}</li>
+    </ul>
+</div>
+
+
