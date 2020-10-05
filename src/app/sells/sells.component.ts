@@ -12,33 +12,61 @@ export class SellsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadBookList()
+    this.loadCustomerList();
   }
 
   loadBookList(){
     this.model.getBookList()
   }
+  loadCustomerList(){
+    this.model.getCustomerList()
+  }
 
   onChooseList(book){
-    console.log(book)
     this.model.selectedAddItem=book
+  }
+  onChooseCustomer(customer){
+    this.model.selectedCustomer=customer
+    console.log(customer)
   }
 
   onClickSelectedAddBtn(){
     this.model.bookList.find(item=>item.BOOK_PK==this.model.selectedAddItem.BOOK_PK).QUANTITY-=this.model.selectedAddItem.QUANTITY;
-    this.model.bookQueueList.push(this.model.selectedAddItem);
+    if(this.model.bookQueueList.some(item=>item.BOOK_PK==this.model.selectedAddItem.BOOK_PK)){
+      
+      this.model.bookQueueList.find(item=>item.BOOK_PK==this.model.selectedAddItem.BOOK_PK).QUANTITY=Number(this.model.bookQueueList.find(item=>item.BOOK_PK==this.model.selectedAddItem.BOOK_PK).QUANTITY)+Number(this.model.selectedAddItem.QUANTITY);
+    }else{
+      this.model.bookQueueList.push(this.model.selectedAddItem);
+    }
+   
     this.model.selectedAddItem=new Book();
     this.calculateTransaction();
   }
 
-  queueBookQuantity(){
+  queueBookQuantity(book:Book){
+    this.model.bookList.find(item=>item.BOOK_PK==book.BOOK_PK).QUANTITY=this.model.backUpBookList.find(item=>item.BOOK_PK==book.BOOK_PK).QUANTITY-book.QUANTITY
     this.calculateTransaction()
   }
 
   calculateTransaction(){
-    this.model.totalWithoutCommission=this.model.bookQueueList.map(item=>item.PRICE*item.QUANTITY).reduce((acc,value)=>acc+=value)
+    this.model.totalWithoutCommission=this.model.bookQueueList.map(item=>item.PRICE*item.QUANTITY).reduce((acc,value)=>acc+=value,0)
     this.model.totalCommission=this.model.totalWithoutCommission*(this.model.commission/100);
     this.model.totalWithCommission=this.model.totalWithoutCommission-this.model.totalCommission
     this.model.returnTk=this.model.cash-this.model.totalWithCommission
+  }
+
+  removeFromBookQueueList(book:Book){
+    let tempObj=this.model.bookQueueList.splice(this.model.bookQueueList.findIndex(item=>item.BOOK_PK==book.BOOK_PK),1)
+    console.log(tempObj)
+    this.model.bookList.find(item=>item.BOOK_PK==book.BOOK_PK).QUANTITY=this.model.backUpBookList.find(item=>item.BOOK_PK==book.BOOK_PK).QUANTITY;
+    this.calculateTransaction();
+  }
+
+
+
+  onClickTransactionBtn(){
+    console.log(this.model.bookQueueList)
+    console.log(this.model.selectedCustomer)
   }
 
 }

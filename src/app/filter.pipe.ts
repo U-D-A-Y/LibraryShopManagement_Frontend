@@ -11,8 +11,6 @@ export class FilterPipe implements PipeTransform {
       return null;
     }
     arg[0]=arg[0] ?arg[0].trim():'';
-    console.log(arg)
-    console.log(list)
     if(arg.length==1){
       return this.filterByAll(list,arg)
     }else{

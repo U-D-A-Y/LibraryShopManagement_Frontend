@@ -32,7 +32,7 @@
                     <table class="table table-bordered mb-0">
                         <tr class="text-left">
                             <th scope="col">Book Name</th>
-                            <td colspan="3"><app-auto-complete-input [data]="model.bookList" (choose)="onChooseList($event)"></app-auto-complete-input></td>
+                            <td colspan="3"><app-auto-complete-input [data]="model.bookList" [selectedData]="model.selectedAddItem" [field]="'BOOK_NAME'" (choose)="onChooseList($event)"></app-auto-complete-input></td>
                         </tr>
                         <tr class="text-left">
                             <th scope="col">Price</th>
@@ -58,15 +58,16 @@
                     <table class="table table-bordered mb-0">
                         <tr class="text-left">
                             <th scope="col">Customer Name</th>
-                            <td><input class="form-control" type="text" placeholder="Default input"></td>
+                            <td><input class="form-control" type="text" placeholder="Default input"
+                            name="selectedCustomer.NAME" [(ngModel)]="model.selectedCustomer.NAME"></td>
                         </tr>
                         <tr class="text-left">
                             <th scope="col">Mobile number</th>
-                            <td><input class="form-control" type="text" placeholder="Default input"></td>
+                            <td><app-auto-complete-input [data]="model.customerList" [selectedData]="model.selectedCustomer" [field]="'PHONE'" (choose)="onChooseCustomer($event)"></app-auto-complete-input></td>
                         </tr>
                         <tr class="text-left">
                             <th scope="col">Address</th>
-                            <td><input class="form-control" type="text" placeholder="Default input"></td>
+                            <td><input class="form-control" type="text" placeholder="Default input" name="selectedCustomer.ADDRESS" [(ngModel)]="model.selectedCustomer.ADDRESS"></td>
                         </tr>
                     </table>
                 </form>
@@ -95,11 +96,11 @@
                             <th scope="row">{{i+1}}</th>
                             <td>{{book.BOOK_NAME}}</td>
                             <td [style.width]="'100px'">{{book.PRICE}}</td>
-                            <td [style.width]="'100px'"><input class="form-control" type="text" name="ql.QUANTITY" [(ngModel)]="book.QUANTITY" (change)="queueBookQuantity()"></td>
+                            <td [style.width]="'100px'"><input class="form-control" type="text" name="ql.QUANTITY" [(ngModel)]="book.QUANTITY" (change)="queueBookQuantity(book)"></td>
                             <td>{{book.PRICE*book.QUANTITY}}</td>
                             <td class="text-center">
                                 <button type="button" class="btn btn-dark btn-sm m-1"><i class="fa fa-eye"></i></button>
-                                <button type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-remove"></i></button>
+                                <button type="button" class="btn btn-danger btn-sm m-1" (click)="removeFromBookQueueList(book)"><i class="fa fa-remove"></i></button>
                             </td>
                         </tr>
                     </tbody>
@@ -117,7 +118,7 @@
                             <table class="table table-bordered mb-0">
                                 <tr class="text-left">
                                     <th scope="col">Commission</th>
-                                    <td><input class="form-control" type="text" name="model.commission" [(ngModel)]="model.commission"></td>
+                                    <td><input class="form-control" type="text" name="model.commission" [(ngModel)]="model.commission" (change)="calculateTransaction()"></td>
                                 </tr>
                                 <tr class="text-left">
                                     <th scope="col" >Total</th>
@@ -133,7 +134,7 @@
                                 </tr>
                                 <tr class="text-left">
                                     <th scope="col">Cash</th>
-                                    <td><input class="form-control" type="text" name="model.cash" [(ngModel)]="model.cash"></td>
+                                    <td><input class="form-control" type="text" name="model.cash" [(ngModel)]="model.cash" (change)="calculateTransaction()"></td>
                                 </tr>
                                 <tr class="text-left">
                                     <th scope="col">Return</th>
@@ -141,7 +142,7 @@
                                 </tr>
                                 <tr class="text-right">
                                     <th scope="col" colspan="2">
-                                        <button type="button" class="btn btn-danger btn-sm m-1"><i class="fa fa-vcard"></i>Transaction</button>
+                                        <button type="button" class="btn btn-danger btn-sm m-1" (click)="onClickTransactionBtn()"><i class="fa fa-vcard"></i>Transaction</button>
                                     </th>
                                 </tr>
                             </table>

@@ -9,29 +9,30 @@ import { Book } from '../model/book.model';
 export class AutoCompleteInputComponent implements OnInit {
 
   @Input('data') inputData
+  @Input('selectedData') selectedData
+  @Input('field') field
   @Output('choose') chooseList=new EventEmitter()
   show=false
-  inputField=""
-  booklist:Array<Book>
+  dataList:Array<Book>
   
   constructor() { 
    
   }
 
   ngOnInit(): void {
-    this.booklist=JSON.parse(JSON.stringify(this.inputData))
-    console.log(this.booklist)
+    this.dataList=JSON.parse(JSON.stringify(this.inputData))
+    console.log(this.dataList)
   }
 
 
   onFocus(){
     this.show=true
-    this.booklist=JSON.parse(JSON.stringify(this.inputData))
+    this.dataList=JSON.parse(JSON.stringify(this.inputData))
   }
-  onClickList(book){
+  onClickList(data){
     this.show=false
-    this.chooseList.emit(book)
-    this.inputField=book.BOOK_NAME
+    this.selectedData=data;
+    this.chooseList.emit(this.selectedData)
   }
 
 }
