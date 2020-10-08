@@ -1,0 +1,103 @@
+<div class="card">
+    <div class="card-header d-flex justify-content-between ">
+        <p class="mb-0">{{'Category List'|titlecase}}</p>
+        <button type="button" class="btn btn-primary btn-sm" (click)="addModal(lgModal)"><i class="fa fa-plus"></i>
+            Add</button>
+    </div>
+    <div class="card-body">
+        <div class="border d-flex justify-content-end">
+            <div class="input-group my-3 w-25 mr-3">
+                <input type="text" class="form-control" placeholder="" [(ngModel)]="searchText">
+                <div class="input-group-append">
+                    <span class="input-group-text"> <i class="fa fa-search"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered ">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of model.categoriesList |filter:[searchText];index as i">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{category.NAME}}</td>
+                    <td>{{category.DESCRIPTION}}</td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-dark btn-sm m-1" (click)="viewBookDetails(lgModal,category)"><i
+                                class="fa fa-eye"></i></button>
+                        <button type="button" class="btn btn-warning btn-sm m-1"
+                            (click)="updateBookDetails(lgModal,category)"><i class="fa fa-edit"></i></button>
+                        <button type="button" class="btn btn-danger btn-sm m-1" (click)="onClickDeleteModal(deleteModal,category)"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left">{{title|titlecase}}</h4>
+                <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form   #bookForm="ngForm">
+                    <table class="table table-bordered">
+                        <tr class="text-left">
+                            <th scope="col">Category Name</th>
+                            <td><input class="form-control" type="text" name="NAME"
+                                    [(ngModel)]="model.selectedCategory.NAME" [disabled]="btnShowCon==1" required></td>
+                        </tr>
+                        <tr class="text-left">
+                            <th scope="col">Descriptions</th>
+                            <td><textarea class="form-control" type="text" name="DESCRIPTION"
+                                    [(ngModel)]="model.selectedCategory.DESCRIPTION" [disabled]="btnShowCon==1"></textarea>
+                            </td>
+                        </tr>
+                        <tr class="text-right">
+                            <th scope="col " colspan="2">
+                                <button *ngIf="btnShowCon==2" type="button" class="btn btn-success btn-sm" (click)="onClickAddCategoryBtn(lgModal)" [disabled]="!bookForm.valid">Add</button>
+                                <button *ngIf="btnShowCon==3" type="button" class="btn btn-warning btn-sm" (click)="onClickUpdateCategoryBtn(lgModal)" [disabled]="!bookForm.valid">Update</button>
+                            </th>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div bsModal #deleteModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+    aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left">{{title|titlecase}}</h4>
+                <button type="button" class="close pull-right" (click)="deleteModal.hide()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Do want to delete it</p>
+            </div>
+            <div class="modal-footer">
+                <div>
+                    <button type="button" class="btn btn-danger mr-1" (click)="onClickDeleteCategoryBtn(deleteModal)">Yes</button>
+                    <button type="button" class="btn btn-primary" (click)="deleteModal.hide()">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

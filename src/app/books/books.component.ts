@@ -52,7 +52,7 @@ export class BooksComponent implements OnInit {
   updateBookDetails(modal, book) {
     this.title = "Update Book details";
     this.btnShowCon = 3;
-    this.model.selectedBook = book
+    this.model.selectedBook = JSON.parse(JSON.stringify(book))
     modal.show()
   }
   onClickDeleteModal(modal, book) {
@@ -63,6 +63,13 @@ export class BooksComponent implements OnInit {
   }
   onClickAddBookBtn(modal) {
     this.model.addBook(this.model.selectedBook)
+    .subscribe(result=>{
+      modal.hide();
+      this.LoadBooksData();
+    })
+  }
+  onClickUpdateBtn(modal) {
+    this.model.updateBook(this.model.selectedBook)
     .subscribe(result=>{
       modal.hide();
       this.LoadBooksData();

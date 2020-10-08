@@ -126,8 +126,7 @@
                         <tr class="text-right">
                             <th scope="col " colspan="2">
                                 <button *ngIf="btnShowCon==2" type="button" class="btn btn-success btn-sm" (click)="onClickAddBookBtn(lgModal)" [disabled]="!bookForm.valid">Add</button>
-                                <button *ngIf="btnShowCon==3" type="button"
-                                    class="btn btn-warning btn-sm">Update</button>
+                                <button *ngIf="btnShowCon==3" type="button" class="btn btn-warning btn-sm" (click)="onClickUpdateBtn(lgModal)" [disabled]="!bookForm.valid">Update</button>
                             </th>
                         </tr>
                     </table>

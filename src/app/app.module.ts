@@ -17,6 +17,7 @@ import { ContainerComponent } from './container/container.component';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 import { AutoCompleteInputComponent } from './auto-complete-input/auto-complete-input.component';
+import { CategoryComponent } from './category/category.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
     path: '', component: ContainerComponent, children: [
       { path: 'dashboard', component: DashBoardComponent },
       { path: 'books', component: BooksComponent },
+      { path: 'categories', component: CategoryComponent },
       { path: 'sells', component: SellsComponent },
       { path: 'customers', component: CustomersComponent },
     ]
@@ -43,6 +45,7 @@ const routes: Routes = [
     ContainerComponent,
     FilterPipe,
     AutoCompleteInputComponent,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,

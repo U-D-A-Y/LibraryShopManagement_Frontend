@@ -48,4 +48,8 @@ export class Model{
     onClickSelectedAddBtn(){
 
     }
+
+    transaction(data) {
+        return this.http.postData('transaction', data)
+      }
 }

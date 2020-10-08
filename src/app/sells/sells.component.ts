@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../model/book.model';
+import { Customer } from '../model/customer.model';
 import { Model } from './model.service';
 
 @Component({
@@ -62,11 +63,22 @@ export class SellsComponent implements OnInit {
     this.calculateTransaction();
   }
 
-
+  onClickClearBtn(){
+    this.model.bookQueueList=[];
+    this.model.selectedCustomer=new Customer()
+    this.model.selectedAddItem=new Book()
+    this.model.bookList=JSON.parse(JSON.stringify(this.model.backUpBookList))
+    this.calculateTransaction()
+  }
 
   onClickTransactionBtn(){
     console.log(this.model.bookQueueList)
     console.log(this.model.selectedCustomer)
+    this.model.transaction({products:this.model.bookQueueList,customer:this.model.selectedCustomer,commission:this.model.commission})
+    .subscribe(result=>{
+      console.log(result)
+      this.loadBookList();
+    })
   }
 
 }

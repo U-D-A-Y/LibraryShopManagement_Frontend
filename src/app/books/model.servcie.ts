@@ -37,6 +37,9 @@ export class Model {
   addBook(book:Book) {
     return this.Http.postData('book', book)
   }
+  updateBook(book:Book) {
+    return this.Http.updateData('book', book)
+  }
   deleteBook(book:Book) {
     return this.Http.deleteData(`book/${book.BOOK_PK}`)
   }
