@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-header d-flex justify-content-between ">
+        <p class="mb-0">{{'Sales List'|titlecase}}</p>
+    </div>
+    <div class="card-body">
+        <div class="border d-flex justify-content-end">
+            <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker>
+            <div class="input-group my-3 w-25 mr-3">
+                <input type="text" class="form-control" placeholder="" [(ngModel)]="searchText">
+                <div class="input-group-append">
+                    <span class="input-group-text"> <i class="fa fa-search"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered ">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Transaction Number</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of model.salesDetailsList |filter:[searchText];index as i">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{book.BOOK_NAME}}</td>
+                    <td>{{book.CATEGORY_NAME}}</td>
+                    <td>{{book.AUTHOR_NAME}}</td>
+                    <td>{{book.PUBLICATION_NAME}}</td>
+                    <td>{{book.PRICE}}</td>
+                    <td>{{book.QUANTITY}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

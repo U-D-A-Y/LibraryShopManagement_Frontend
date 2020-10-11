@@ -18,7 +18,9 @@ import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './filter.pipe';
 import { AutoCompleteInputComponent } from './auto-complete-input/auto-complete-input.component';
 import { CategoryComponent } from './category/category.component';
-
+import { PublishersComponent } from './publishers/publishers.component';
+import { SaleDetailComponent } from './sale-detail/sale-detail.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -27,7 +29,9 @@ const routes: Routes = [
       { path: 'dashboard', component: DashBoardComponent },
       { path: 'books', component: BooksComponent },
       { path: 'categories', component: CategoryComponent },
+      { path: 'publishers', component: PublishersComponent },
       { path: 'sells', component: SellsComponent },
+      { path: 'sale-detail', component: SaleDetailComponent },
       { path: 'customers', component: CustomersComponent },
     ]
   },
@@ -46,6 +50,8 @@ const routes: Routes = [
     FilterPipe,
     AutoCompleteInputComponent,
     CategoryComponent,
+    PublishersComponent,
+    SaleDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +59,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     FormsModule,
+    BsDatepickerModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
