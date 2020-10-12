@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap';
 import { Category } from '../model/category.model';
 import { Model } from './model.servcie';
 
@@ -12,7 +11,7 @@ export class CategoryComponent implements OnInit {
   searchText;
   title: string = "";
   btnShowCon: number = 1
-  modalRef: BsModalRef;
+
   constructor(
     // private modalService: BsModalService,
     public model: Model,

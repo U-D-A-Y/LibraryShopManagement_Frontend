@@ -10,7 +10,6 @@ import { BooksComponent } from './books/books.component';
 import { SellsComponent } from './sells/sells.component';
 import { CustomersComponent } from './customers/customers.component';
 import { Routes, RouterModule } from '@angular/router'
-import { ModalModule } from 'ngx-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { ContainerComponent } from './container/container.component';
@@ -21,7 +20,8 @@ import { CategoryComponent } from './category/category.component';
 import { PublishersComponent } from './publishers/publishers.component';
 import { SaleDetailComponent } from './sale-detail/sale-detail.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   {
@@ -59,6 +59,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
   ],
   providers: [],

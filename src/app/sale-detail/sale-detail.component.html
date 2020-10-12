@@ -3,8 +3,23 @@
         <p class="mb-0">{{'Sales List'|titlecase}}</p>
     </div>
     <div class="card-body">
-        <div class="border d-flex justify-content-end">
-            <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker>
+        <div class="border d-flex justify-content-between">
+
+            <div class="input-group my-3 w-25 ml-3">
+                <form>
+                    <div class="form-row">
+                        <div class="col-4">
+                            <input class="form-control" placeholder="Start Date" name="start date" [(ngModel)]="model.startDate" bsDatepicker [bsConfig]="model.bsConfig" [maxDate]="model.endDate">
+                        </div>
+                        <div class="col-4">
+                            <input placeholder="End Date" class="form-control" name="end date" [(ngModel)]="model.endDate" bsDatepicker [bsConfig]="model.bsConfig" [minDate]="model.startDate">
+                        </div>
+                        <div class="col d-flex align-items-center">
+                            <button class="btn btn-dark btn-sm" (click)="onClickSearchBtn()">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <div class="input-group my-3 w-25 mr-3">
                 <input type="text" class="form-control" placeholder="" [(ngModel)]="searchText">
                 <div class="input-group-append">
@@ -18,21 +33,29 @@
             <thead>
                 <tr class="text-center">
                     <th scope="col">#</th>
-                    <th scope="col">Transaction Number</th>
-                    <th scope="col">Customer Name</th>
+                    <th scope="col">Trn No</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Date</th>
+                    <th scope="col">Commission</th>
                     <th scope="col">Total</th>
+                    <th scope="col">Net Total</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let book of model.salesDetailsList |filter:[searchText];index as i">
+                <tr *ngFor="let sales of model.salesDetailsList |filter:[searchText];index as i" class="text-center">
                     <th scope="row">{{i+1}}</th>
-                    <td>{{book.BOOK_NAME}}</td>
-                    <td>{{book.CATEGORY_NAME}}</td>
-                    <td>{{book.AUTHOR_NAME}}</td>
-                    <td>{{book.PUBLICATION_NAME}}</td>
-                    <td>{{book.PRICE}}</td>
-                    <td>{{book.QUANTITY}}</td>
+                    <td>{{sales.TRN_NO}}</td>
+                    <td>{{sales.CUSTOMER_NAME}}</td>
+                    <td>{{sales.DATE | date:'dd/MM/yyyy' }}</td>
+                    <td>{{sales.COMMISSION}}</td>
+                    <td>{{sales.TOTAL}}</td>
+                    <td>{{sales.NET_TOTAL}}</td>
+                </tr>
+                <tr class="text-center">
+                    <td colspan="4"></td>
+                    <td class="font-weight-bold">Total</td>
+                    <td class="font-weight-bold">{{model.total}}</td>
+                    <td class="font-weight-bold">{{model.netTotal}}</td>
                 </tr>
             </tbody>
         </table>

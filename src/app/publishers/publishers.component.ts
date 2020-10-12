@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap';
 import { Publisher } from '../model/publisher.model';
 import { Model } from './model.servcie';
 
@@ -12,7 +11,6 @@ export class PublishersComponent implements OnInit {
   searchText;
   title: string = "";
   btnShowCon: number = 1
-  modalRef: BsModalRef;
   constructor(public model: Model) { }
 
   ngOnInit(): void {

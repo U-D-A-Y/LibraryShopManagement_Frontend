@@ -9,12 +9,14 @@ export class SaleDetailComponent implements OnInit {
   searchText;
   constructor( public model:Model
   ) { }
-
+  
   ngOnInit(): void {
     this.model.getSaleDetails()
   }
 
-
+  onClickSearchBtn(){
+   this.model.getSaleDetails()
+  }
 
  
  
