@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { observable, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { Http } from '../http.service';
 
 @Component({
   selector: 'app-login',
@@ -10,17 +10,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  baseUrl="http://localhost:3000/"
-  constructor(private http:HttpClient,
-    private router:Router) { }
+  constructor(
+    private http:Http,
+    private router:Router,
+    private authService:AuthService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+
   onClickSubmit(loginForm:NgForm){
-    this.http.post(`${this.baseUrl}login`,{data:loginForm.value})
+    this.http.postData(`login`,{data:loginForm.value})
     .subscribe(result=>{
-      if(result[0]){
-        console.log(result[0])
+      if(result){
+        this.authService.setToken(result.token)
         this.router.navigate(['dashboard'])
 
       }

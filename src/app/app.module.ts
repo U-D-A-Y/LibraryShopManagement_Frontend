@@ -10,7 +10,7 @@ import { BooksComponent } from './books/books.component';
 import { SellsComponent } from './sells/sells.component';
 import { CustomersComponent } from './customers/customers.component';
 import { Routes, RouterModule } from '@angular/router'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { ContainerComponent } from './container/container.component';
 import { FormsModule } from '@angular/forms';
@@ -22,6 +22,7 @@ import { SaleDetailComponent } from './sale-detail/sale-detail.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthInterceptor } from './auth.interceptor';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   {
@@ -62,7 +63,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
