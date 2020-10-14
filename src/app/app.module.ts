@@ -23,19 +23,21 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './auth.interceptor';
+import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   {
     path: '', component: ContainerComponent, children: [
-      { path: 'dashboard', component: DashBoardComponent },
-      { path: 'books', component: BooksComponent },
-      { path: 'categories', component: CategoryComponent },
-      { path: 'publishers', component: PublishersComponent },
-      { path: 'sells', component: SellsComponent },
-      { path: 'sale-detail', component: SaleDetailComponent },
-      { path: 'customers', component: CustomersComponent },
+      { path: 'dashboard', component: DashBoardComponent ,canActivate: [AuthGuard]},
+      { path: 'books', component: BooksComponent,canActivate: [AuthGuard] },
+      { path: 'categories', component: CategoryComponent,canActivate: [AuthGuard] },
+      { path: 'publishers', component: PublishersComponent,canActivate: [AuthGuard] },
+      { path: 'sells', component: SellsComponent,canActivate: [AuthGuard] },
+      { path: 'sale-detail', component: SaleDetailComponent,canActivate: [AuthGuard] },
+      { path: 'customers', component: CustomersComponent ,canActivate: [AuthGuard]},
     ]
   },
+  { path: '**', redirectTo: '' }
 ]
 
 @NgModule({

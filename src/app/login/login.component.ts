@@ -7,7 +7,6 @@ import { Http } from '../http.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   constructor(
@@ -21,9 +20,12 @@ export class LoginComponent implements OnInit {
     this.http.postData(`login`,{data:loginForm.value})
     .subscribe(result=>{
       if(result){
-        this.authService.setToken(result.token)
-        this.router.navigate(['dashboard'])
-
+        if(result.authentic){
+          this.authService.setToken(result.token)
+          this.router.navigate(['dashboard'])
+        }else{
+          console.log('enter valid user')
+        }
       }
     })
   }

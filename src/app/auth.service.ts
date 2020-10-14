@@ -4,14 +4,21 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthService {
-  private token;
+
   constructor() { }
 
   getToken(){
-    return this.token
+    return localStorage.getItem('Token')
   }
   setToken(token){
-    this.token=token;
-    console.log(this.token)
+    localStorage.setItem('Token',token)
+  }
+
+  removeToken(){
+    localStorage.removeItem('Token')
+  }
+
+  isAuthenticated(){
+    return this.getToken() ? true :false;
   }
 }

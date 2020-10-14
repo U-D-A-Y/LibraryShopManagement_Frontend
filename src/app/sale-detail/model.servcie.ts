@@ -27,8 +27,8 @@ export class Model {
     this.Http.getData(`sales-details/${this.startDate.toJSON().split('T')[0]}/${this.endDate.toJSON().split('T')[0]}`)
       .subscribe(result => {
         this.salesDetailsList=result.map(item=>new SalesDetail(item))
-        this.total=this.salesDetailsList.map(item=>item.TOTAL).reduce((acc,item)=>acc+=item)
-        this.netTotal=this.salesDetailsList.map(item=>item.NET_TOTAL).reduce((acc,item)=>acc+=item)
+        this.total=this.salesDetailsList.map(item=>item.TOTAL).reduce((acc,item)=>acc+=item,0) 
+        this.netTotal=this.salesDetailsList.map(item=>item.NET_TOTAL).reduce((acc,item)=>acc+=item,0) 
       })
   }
 
