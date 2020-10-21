@@ -9,15 +9,13 @@ import { DashBoard } from './dashboard.model';
 })
 export class DashBoardComponent implements OnInit {
  
-  constructor(private model:DashBoard) {
+  constructor(public model:DashBoard) {
     
    }
 
   ngOnInit(): void {
-      this.model.getTotalCategoriesNumber().subscribe(result=>{
-        console.log(result)
-      })
 
+    
   }
 
 }

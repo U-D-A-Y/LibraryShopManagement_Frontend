@@ -1,16 +1,17 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Http } from '../http.service';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DashBoard{
-    baseUrl="http://localhost:3000/api/"
+
     
-    constructor(private http: HttpClient) { }
-    getTotalCategoriesNumber():Observable<any>{
-        return this.http.get(`${this.baseUrl}/categoriesCount`)
+    constructor(private http: Http) { }
+ 
+
+    getTotalCategories(){
+        return this.http.getData('categories/count')
     }
 
     
