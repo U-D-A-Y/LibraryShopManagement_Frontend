@@ -14,13 +14,9 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService:AuthService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    if(request.url.split('api/')[1]=="login"){
-    
-      request = request.clone({ url: request.url.split('api/')[0]+request.url.split('api/')[1]});
-    }else{
+    if(request.url.split('api/')[1]!="login"){
       request = request.clone({ headers: request.headers.set( 'Authorization', 'Bearer '+this.authService.getToken())});
     }
-  
     return next.handle(request);
   }
 }

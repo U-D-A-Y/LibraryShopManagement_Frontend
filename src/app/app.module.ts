@@ -24,6 +24,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './auth.interceptor';
 import { AuthGuard } from './auth.guard';
+import { CardComponent } from './card/card.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   {
@@ -55,6 +56,7 @@ const routes: Routes = [
     CategoryComponent,
     PublishersComponent,
     SaleDetailComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,

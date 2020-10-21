@@ -44,3 +44,14 @@ body{
 .auto-complete-ul li{
     padding: .5rem;
 }
+
+
+.fontSize-3{
+    font-size: 3rem !important;
+}
+.fontSize-2{
+    font-size: 2rem !important;
+}
+.fontSize-1{
+    font-size: 1.5rem !important;
+}
