@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { LangService } from '../lang.service';
 
 
 @Component({
@@ -8,7 +9,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class CardComponent implements OnInit {
   @Input('data') data
   @Output('child-click') event=new EventEmitter<any>()
-  constructor() { }
+  constructor(
+    public langService:LangService
+  ) { }
 
   ngOnInit(): void {
   }

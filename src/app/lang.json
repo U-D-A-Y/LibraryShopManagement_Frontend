@@ -1,0 +1,42 @@
+{
+    "book": {
+        "en": "Book",
+        "bn": "বই",
+        "jp":"本"
+    },
+    "dashboard": {
+        "en": "Dashboard",
+        "bn": "ড্যাশবোর্ড",
+        "jp":"ダッシュボード"
+    },
+    "category": {
+        "en": "Category",
+        "bn": "বিভাগ",
+        "jp":"カテゴリー"
+    },
+    "publisher": {
+        "en": "Publisher",
+        "bn": "প্রকাশক",
+        "jp":"出版社"
+    },
+    "sales": {
+        "en": "Sales",
+        "bn": "বিক্রয়",
+        "jp":"販売"
+    },
+    "salesDetails": {
+        "en": "Sales Details",
+        "bn": "বিক্রয় বিশদ",
+        "jp":"販売詳細"
+    },
+    "customer": {
+        "en": "Customer",
+        "bn": "ক্রেতা",
+        "jp" :"お客様"
+    },
+    "setting": {
+        "en": "Setting",
+        "bn": "সেটিং",
+        "jp": "設定"
+    }
+}

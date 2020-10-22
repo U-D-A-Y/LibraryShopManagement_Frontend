@@ -2,7 +2,7 @@
     <div class="card-body cardbodyHeight d-flex align-items-center justify-content-around">
       <div><i class="fontSize-3" [class]="data.icon"></i></div>
       <div class="d-flex flex-column align-items-center">
-        <h2 class="fontSize-1.5 m-0">{{data.type}}</h2>
+        <h2 class="fontSize-1.5 m-0">{{langService.data[data.type]}}</h2>
         <p class="fontSize-2 font-weight-bold m-0">{{data.count}}</p>
       </div>
     </div>

@@ -55,3 +55,32 @@ body{
 .fontSize-1{
     font-size: 1.5rem !important;
 }
+
+a:hover{
+ cursor: pointer !important;
+}
+
+
+.admin-panel{
+    background-color: #343A40;
+    width: 10rem;
+    position: absolute;
+    right: 0;
+    z-index: 10;
+    align-items: flex-start;
+    top: 37px;
+    border-radius: 2px;
+}
+
+.admin-panel ul{
+    margin: 0;
+    padding: 0;
+}
+
+.admin-panel ul li{
+    list-style: none;
+    padding: .5rem;
+}
+.admin-panel ul li a{
+  
+}

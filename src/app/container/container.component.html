@@ -1,16 +1,28 @@
-  <div class="top-bar">
-    <div class="col-md-6 text-left text h4 text-white mt-2">Library Management</div>
-    <div class="col-md-6 text-right h6 text-white mt-3" (click)="onClickSignOutBtn()"><a >Signout</a> </div>
-  </div>
-  <div class="d-flex" >
-    <div class="left-bar">
-      <app-nav-bar></app-nav-bar>
+<div class="top-bar">
+  <div class="col-md-6 text-left text h4 text-white mt-2">Library Management</div>
+  <div class="col-md-6 text-right h6 text-white mt-3 position-relative">
+    <a (click)="show=show?false:true">Admin</a>
+    <div class="admin-panel text-left" [style.display]="show ? '':'none'">
+      <ul>
+        <li class=""><a>Language</a>
+          <select class="" name="language"  name="language"  (change)="$event.value=$event.target.value;onChangeLanguage($event.target.value);show=show?false:true;">
+            <option *ngFor="let lan of langService.language" [value]="lan.value">{{lan.text}}</option>
+          </select>
+        </li>
+        <li><a (click)="onClickSignOutBtn();show=show?false:true">Signout</a></li>
+      </ul>
     </div>
-    <div class="content">
-      <div class="alert alert-secondary text-primary font-weight-bold" >
-        {{routerUrl}}
-      </div>
-      <router-outlet></router-outlet>
-    </div>
-   
   </div>
+</div>
+<div class="d-flex">
+  <div class="left-bar">
+    <app-nav-bar></app-nav-bar>
+  </div>
+  <div class="content">
+    <div class="alert alert-secondary text-primary font-weight-bold">
+      {{routerUrl}}
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

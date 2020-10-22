@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '../http.service';
+import { LangService } from '../lang.service';
 
 @Injectable({
     providedIn: 'root',
@@ -7,12 +8,12 @@ import { Http } from '../http.service';
 export class DashBoard{
     
     cardList=[
-        {type:'Book',count:0,icon:'fa fa-book',path:"books"},
-        {type:'Category',count:0,icon:'fa fa-cube',path:"categories"},
-        {type:'Customer',count:0,icon:'fa fa-users',path:"customers"},
-        {type:'Sale',count:0,icon:'fa fa-list-alt',path:"sale-detail"},
+        {type:'book',count:0,icon:'fa fa-book',path:"books"},
+        {type:'category',count:0,icon:'fa fa-cube',path:"categories"},
+        {type:'customer',count:0,icon:'fa fa-users',path:"customers"},
+        {type:'sales',count:0,icon:'fa fa-list-alt',path:"sale-detail"},
     ]
-    constructor(private http: Http) {
+    constructor(private http: Http,   public langService:LangService,) {
         this.getTotalBooks()
         .subscribe(result=>{
             this.cardList[0].count=result[0].count;
